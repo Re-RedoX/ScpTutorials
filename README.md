@@ -24,4 +24,4 @@ RadioUtilities:
   ``debug: false``
   
   
-  ``IsInfinityBatteryEnabled: true``
+  ``IsRoundWillBeEnded: true``
