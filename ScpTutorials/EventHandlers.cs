@@ -25,22 +25,9 @@ namespace ScpTutorials
         {
             if (config.IsRoundWillBeEnded)
             {
-                foreach (var tutorial in Player.List)
+                if(Player.List.Count(t => t.IsTutorial) > 0 && if(Player.List.Count(p => p.IsNTF || p.IsCHI) > 0))
                 {
-                    if (tutorial.Role.Type == RoleTypeId.Tutorial)
-                    {
-                        foreach (var checkNonTutorial in Player.List)
-                        {
-                            if (checkNonTutorial.Role.Side == Side.Mtf || checkNonTutorial.Role.Side == Side.ChaosInsurgency)
-                            {
-                                e.IsRoundEnded = false;
-                            }
-                            else
-                            {
-                                e.IsRoundEnded = true;
-                            }
-                        }
-                    }
+                    e.IsRoundEnded = false; 
                 }
             }
             
