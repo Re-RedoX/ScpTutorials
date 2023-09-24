@@ -73,15 +73,34 @@ namespace ScpTutorials
                 ev.IsAllowed = false;
             }
         }
+        
+        
+        
+        
+        
+        
+        
         public void OnHurting(HurtingEventArgs ev)
         {
-            if (ev.Player.Role.Type == RoleTypeId.Tutorial && ev.Attacker.Role.Side == Exiled.API.Enums.Side.Scp || ev.Player.Role.Side == Side.Scp && ev.Attacker.Role.Type == RoleTypeId.Tutorial)
+            //// Exiled Himself Error Check
+            if (ev.Player != null && ev.Player.Role != null && ev.Attacker != null && ev.Attacker.Role != null)
             {
-                ev.IsAllowed = false;
+                if (ev.Player.Role.Type == RoleTypeId.Tutorial && ev.Attacker.Role.Side == Exiled.API.Enums.Side.Scp || ev.Player.Role.Side == Side.Scp && ev.Attacker.Role.Type == RoleTypeId.Tutorial)
+                {
+                    ev.IsAllowed = false;
+                }
+                else
+                {
+                    ev.IsAllowed = true;
+                }
             }
             else
             {
-                ev.IsAllowed = true;
+                // Log for exiled.
+                if (config.Debug)
+                {
+                    Log.Warn("OnHurting: Null references detected in event arguments. It's Exiled Himself Error");
+                }
             }
         }
         public void OnShot(ShotEventArgs ev)
