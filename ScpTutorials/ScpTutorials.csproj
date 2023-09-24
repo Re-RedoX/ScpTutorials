@@ -1,13 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net4.8</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<LangVersion>latest</LangVersion>
-	<Title>ScpTutorials</Title>
-	<Authors>Re-RedoX</Authors>
-	<Description>Allows tutorials to be played on scp side</Description>
+	<AssemblyVersion>1.1.0</AssemblyVersion>
+	<FileVersion>1.1.0</FileVersion>
+	<Version>1.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,10 +15,7 @@
       <HintPath>..\..\..\..\..\..\Exiled Bağımlıları\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Exiled.API">
-      <HintPath>..\..\..\..\..\..\Exiled Bağımlıları\global\dependencies\Exiled.API.dll</HintPath>
-    </Reference>
-    <Reference Include="Exiled.CustomRoles">
-      <HintPath>..\..\..\..\AppData\Roaming\EXILED\Plugins\Exiled.CustomRoles.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Exiled Bağımlıları\Plugins\dependencies\Exiled.API.dll</HintPath>
     </Reference>
     <Reference Include="Exiled.Events">
       <HintPath>..\..\..\..\..\..\Exiled Bağımlıları\Plugins\Exiled.Events.dll</HintPath>

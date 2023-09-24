@@ -25,7 +25,7 @@ namespace ScpTutorials
         {
             if (config.IsRoundWillBeEnded)
             {
-                if(Player.List.Count(t => t.IsTutorial) > 0 && if(Player.List.Count(p => p.IsNTF || p.IsCHI) > 0))
+                if(Player.List.Count(t => t.IsTutorial) > 0 && (Player.List.Count(p => p.IsNTF || p.IsCHI) > 0))
                 {
                     e.IsRoundEnded = false; 
                 }
@@ -75,22 +75,38 @@ namespace ScpTutorials
         }
         public void OnHurting(HurtingEventArgs ev)
         {
-            if (ev.Player.Role.Type == RoleTypeId.Tutorial && ev.Attacker.Role.Side == Exiled.API.Enums.Side.Scp)
+            if (ev.Player.Role.Type == RoleTypeId.Tutorial && ev.Attacker.Role.Side == Exiled.API.Enums.Side.Scp || ev.Player.Role.Side == Side.Scp && ev.Attacker.Role.Type == RoleTypeId.Tutorial)
             {
                 ev.IsAllowed = false;
             }
-        }
-        
-        
-        
-        
-        
-        public void OnShot(ShotEventArgs ev)
-        {
-            if (ev.Player.Role.Type == PlayerRoles.RoleTypeId.Tutorial && ev.Target.Role.Side == Exiled.API.Enums.Side.Scp)
+            else
             {
-                ev.CanHurt = false;
+                ev.IsAllowed = true;
             }
         }
+        public void OnShot(ShotEventArgs ev)
+        {
+            // Exiled Himself Error Check
+            if (ev.Player != null && ev.Player.Role != null && ev.Target != null && ev.Target.Role != null )
+            {
+                if (ev.Player.Role.Type == PlayerRoles.RoleTypeId.Tutorial && ev.Target.Role.Side == Exiled.API.Enums.Side.Scp)
+                {
+                    ev.CanHurt = false;
+                }
+                else
+                {
+                    ev.CanHurt = true;
+                }
+            }
+            else
+            {
+                // Log for exiled.
+                if (config.Debug) 
+                {
+                    Log.Warn("OnShot: Null references detected in event arguments. It's Exiled Himself Error");
+                }
+            }
+        }
+
     }
 }
