@@ -20,15 +20,16 @@ namespace ScpTutorials
     
     public class EventHandlers
     {
-        Config config = new Config();
+        private readonly Config _config;
+        public EventHandlers(Config config) => _config = config;
+        
         public void OnEndingRound(EndingRoundEventArgs e)
         {
-            if (config.IsRoundWillBeEnded)
+            if (_config.IsRoundWillBeEnded)
             {
                 if(Player.List.Count(t => t.IsTutorial) > 0 && (Player.List.Count(p => p.IsNTF || p.IsCHI) > 0))
-                {
-                    e.IsRoundEnded = false; 
-                }
+                    {e.IsRoundEnded = false;}
+                
             }
             
         }

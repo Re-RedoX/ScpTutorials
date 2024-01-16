@@ -11,11 +11,16 @@ namespace ScpTutorials
         public override string Name => "ScpTutorials";
         public override string Prefix => Name;
 
-        EventHandlers _handler = new EventHandlers();
+        public static MainPlugin Instance;
+        
+        private EventHandlers _handler { get; set; }
 
 
         public override void OnEnabled()
         {
+            Instance = this;
+            _handler = new EventHandlers(Config)
+            
             Exiled.Events.Handlers.Server.EndingRound += _handler.OnEndingRound;
             
             Exiled.Events.Handlers.Player.Hurting += _handler.OnHurting;
